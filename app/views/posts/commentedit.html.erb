@@ -1,0 +1,8 @@
+<h1>여기는 댓글을 수정하는 페이지입니다.</h1>
+
+<form action="/posts/<%=@edit_comment.post.id%>/comments/<%=@edit_comment.id%>/update" method="post">
+    내용: <textarea name="comment_content"><%=@edit_comment.content%></textarea><br><br>
+    <input type="submit" value="수정하기">
+</form>
+
+

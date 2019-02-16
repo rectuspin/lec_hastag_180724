@@ -1,0 +1,49 @@
+<h1>여기는 게시물 목록이 나오는 페이지입니다</h1>
+<a href="/new">새 글 쓰기</a><br><br>
+
+<%@posts.each do |post|%>
+    제목: <%=post.title%><br>
+    내용: <%=post.content%><br>
+    <a href="/destroy/<%=post.id%>">[삭제]</a>
+    <a href="/edit/<%=post.id%>">[수정]</a><br><br>
+    
+    <form action="/posts/<%= post.id%>/hashtags/create" method="post">
+        <input type="text" name="hashtag" placeholder="해시태그 하나를 입력해주세요.">
+        <input type="submit" value="해시태그작성">
+    </form>
+    
+    <% post.hashtags.each do |tag| %>
+        #<%= tag.name %><br>
+    <% end %>
+    
+    
+    <% post.comments.each do |x| %>
+        <%= x.content %>
+        <a href="/posts/<%=post.id%>/comments/<%=x.id%>/destroy">[댓글 삭제]</a>
+        <a href="/posts/<%=post.id%>/comments/<%=x.id%>/edit">[댓글 수정]</a>
+        <br>
+    <% end %>
+    
+    <form action="/posts/<%=post.id %>/comments/create" method="post">
+        <textarea name="content"></textarea>
+        <input type="submit" value="댓글쓰기"><br>
+    </form>
+    
+    ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ<br>
+    
+    
+<%end%>
+
+ 
+    <form action="/posts/search" method="post" %>
+        <input class="search full-width" id="searchbar" name="query" placeholder="찾고싶은 단어를 입력하세요" type="text" autocomplete="off">
+        <input type="submit" value="검색"><br>
+    </form>    
+<br><br>
+
+
+<a href="https://sukhwan180724-2-rectuspin.c9users.io/posts/login">
+    kakao login
+</a>
+
+<br><br>
